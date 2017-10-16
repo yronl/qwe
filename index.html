@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body{overflow:hidden}
+</style>
+<body>
+<canvas></canvas>
+</body>
+</html>
+<script>
+    var canvas=document.querySelector('canvas'),
+            ctx=canvas.getContext('2d');
+
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerWidth*1.5;
+
+    ctx.lineWidth=1;
+    ctx.strokeStyle='black';
+    var time=0;
+
+    function draw(){
+        time+=0.01;
+        ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+        ctx.beginPath();
+        for(i=120;i--;)
+            ctx.ellipse(window.innerWidth/2,window.innerHeight/2,i*2,100*Math.sin(time+i/50)+100,2*Math.sin(time/4)+i*2,time,6+time)
+        ctx.stroke();
+        requestAnimationFrame(arguments.callee);
+    }
+
+    draw();
+</script>
